@@ -1,0 +1,52 @@
+generated: '2026-08-22'
+method: probed
+source: https://orders.gammatile.com/orders/.well-known/openid-configuration
+note: >-
+  GT Medical Technologies publishes no API contract, so there is no provider-authored surface
+  to assess. The only standards signal available is the OpenID Connect discovery document served
+  anonymously by the company's GammaTile ordering portal. That host is a Salesforce Experience
+  Cloud community, so the OIDC/OAuth conformance below belongs to the Salesforce platform the
+  company buys, NOT to an interface GT Medical Technologies designed or documents. It is recorded
+  with that caveat rather than dropped, and NO Compliance pointer is emitted, because the company
+  publishes no certifications, audit reports, or trust center.
+standards:
+  - id: oidc-discovery
+    conforms: true
+    evidence: >-
+      https://orders.gammatile.com/orders/.well-known/openid-configuration returns HTTP 200
+      application/json with issuer, authorization_endpoint, token_endpoint, userinfo_endpoint
+      and jwks_uri. Platform-provided by Salesforce Experience Cloud.
+    attribution: platform-provided
+  - id: oauth2
+    conforms: true
+    evidence: >-
+      Discovery document advertises authorization_code and token endpoints, RFC 7009 revocation,
+      RFC 7662 introspection, RFC 7591 dynamic registration and DPoP signing algorithms.
+      Platform-provided by Salesforce Experience Cloud; portal login only, not an API program.
+    attribution: platform-provided
+  - id: rfc8414-oauth-authorization-server-metadata
+    conforms: false
+    evidence: /orders/.well-known/oauth-authorization-server returns HTTP 401 to anonymous clients.
+  - id: rfc9116-security-txt
+    conforms: false
+    evidence: /.well-known/security.txt returns HTTP 404 on gammatile.com and 401 on orders.gammatile.com.
+  - id: rfc9457-problem-details
+    conforms: false
+    evidence: No API and no error contract published.
+domain_standards:
+  note: >-
+    Reward-only slot. GT Medical Technologies operates in the medical device / radiation oncology
+    market, whose interoperability standards are HL7 FHIR, HL7 v2, DICOM and DICOM-RT, and IHE-RO.
+    None appears anywhere on a company-controlled host: there is no clinical data exchange surface,
+    no DICOM-RT plan export endpoint, and no FHIR base URL. The company sells a physical implant and
+    leaves treatment planning to the hospital's existing oncology information system, so the absence
+    is expected and is NOT scored as a failure.
+  probed:
+    - standard: hl7-fhir
+      found: false
+    - standard: dicom-rt
+      found: false
+    - standard: ihe-ro
+      found: false
+x-evidence:
+  checked: '2026-08-22'

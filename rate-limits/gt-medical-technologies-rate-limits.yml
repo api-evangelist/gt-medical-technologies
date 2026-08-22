@@ -1,0 +1,18 @@
+generated: '2026-08-22'
+method: searched
+source: https://gammatile.com/
+limit_count: 0
+note: >-
+  Not applicable. GT Medical Technologies operates no public API, so there is no rate limit to
+  document and no runtime rate-limit headers to observe. Recorded as an explicit zero rather
+  than omitted so the absence is legible as a checked fact. Confirmed 2026-08-22: no developer
+  portal, no API reference, and no machine-readable contract on any company-controlled host.
+rate_limits: []
+headers: []
+x-evidence:
+  checked: '2026-08-22'
+  probed:
+    - url: https://gammatile.com/openapi.json
+      status: 404
+    - url: https://gammatile.com/api
+      status: 404

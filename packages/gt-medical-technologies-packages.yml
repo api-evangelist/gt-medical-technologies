@@ -1,0 +1,35 @@
+generated: '2026-08-22'
+method: searched
+source: >-
+  Public registry lookups against npm, PyPI, RubyGems, crates.io, NuGet, Maven Central,
+  pkg.go.dev and Packagist, plus a GitHub organization search, 2026-08-22.
+package_count: 0
+note: >-
+  No first-party client libraries, SDKs, or published packages exist. GT Medical Technologies
+  has no GitHub organization (gtmedtech, gt-medical-technologies, gammatile and
+  gtmedicaltechnologies all return HTTP 404 from the GitHub API) and no package under any name
+  in any public registry; an npm full-text search for "gammatile" returns 0 total results.
+  This is expected: the company ships a physical implant, not software. Recorded as a checked
+  zero rather than omitted.
+packages: []
+x-evidence:
+  checked: '2026-08-22'
+  registries_searched:
+    - registry: npm
+      query: gammatile
+      total_results: 0
+    - registry: npm
+      probed: [gammatile, gtmedtech, gt-medical]
+      status: 404
+    - registry: pypi
+      probed: [gammatile, gtmedtech]
+      status: 404
+  github_orgs_probed:
+    - org: gtmedtech
+      status: 404
+    - org: gt-medical-technologies
+      status: 404
+    - org: gammatile
+      status: 404
+    - org: gtmedicaltechnologies
+      status: 404

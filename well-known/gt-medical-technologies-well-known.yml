@@ -1,0 +1,92 @@
+generated: '2026-08-22'
+method: probed
+source: >-
+  Direct anonymous HTTP probes of every first-party GT Medical Technologies host
+  discovered from gammatile.com markup and DNS, 2026-08-22.
+note: >-
+  GT Medical Technologies publishes no developer program and no API. The single
+  document found is an OpenID Connect discovery manifest served from the company's
+  own host orders.gammatile.com, whose issuer is https://orders.gammatile.com/orders.
+  IMPORTANT PROVENANCE CAVEAT: that host is a Salesforce Experience Cloud community
+  (DNS CNAME -> 00d1h000000npthua0.live.siteforce.com) used as the GammaTile ordering
+  portal for healthcare providers. The discovery document, its endpoints and its
+  scopes_supported list are stock Salesforce platform boilerplate (cdp_ingest_api,
+  pardot_api, einstein_gpt_api, wave_api, chatter_api, visualforce ...), not an API
+  surface GT Medical Technologies designed, documents, or offers to integrators.
+  It is recorded here because it is a real, parsing, well-known document genuinely
+  served from a company-controlled host - not because the company ships an API.
+hit_count: 1
+hosts:
+  - host: https://gammatile.com
+    note: >-
+      Primary corporate/product site (Next.js). Returns a hard HTTP 404 for every
+      /.well-known/ path, confirmed against a nonsense control path.
+    documents:
+      - path: /.well-known/security.txt
+        status: 404
+      - path: /.well-known/openid-configuration
+        status: 404
+      - path: /.well-known/oauth-authorization-server
+        status: 404
+      - path: /.well-known/api-catalog
+        status: 404
+      - path: /.well-known/ai-plugin.json
+        status: 404
+      - path: /.well-known/agent-card.json
+        status: 404
+      - path: /.well-known/agent.json
+        status: 404
+  - host: https://orders.gammatile.com
+    note: >-
+      GammaTile ordering portal for healthcare providers, running on Salesforce
+      Experience Cloud. All paths resolve under the /orders/ site prefix. Unauthenticated
+      requests to most paths return 401; the OIDC discovery document is served anonymously.
+    documents:
+      - path: /orders/.well-known/openid-configuration
+        status: 200
+        file: gt-medical-technologies-openid-configuration.json
+      - path: /orders/.well-known/oauth-authorization-server
+        status: 401
+      - path: /orders/.well-known/security.txt
+        status: 401
+      - path: /orders/.well-known/api-catalog
+        status: 401
+      - path: /orders/.well-known/agent-card.json
+        status: 401
+      - path: /orders/.well-known/agent.json
+        status: 401
+  - host: https://gtmedtech.com
+    note: >-
+      Legacy corporate domain. Root 301s to gammatile.com, but every sub-path answers
+      HTTP 200 with an identical 104899-byte copy of the gammatile.com homepage,
+      including a nonsense control path. This is a SOFT-404 CATCH-ALL - no document
+      served here is real and none is recorded as a hit.
+    soft_404_control:
+      path: /nonexistent-control-98765
+      status: 200
+      bytes: 104899
+      identical_to_every_probed_path: true
+    documents: []
+  - host: https://quiz.gammatile.com
+    note: >-
+      Third-party Outgrow-hosted patient quiz (CNAME cname-ssl.outgrow.co). Answers
+      HTTP 200 with an identical 10200-byte HTML shell for every path including the
+      control. SOFT-404 CATCH-ALL - no hits recorded.
+    soft_404_control:
+      path: /nonexistent-control-98765
+      status: 200
+      bytes: 10200
+      identical_to_every_probed_path: true
+    documents: []
+  - host: https://ifu.gammatile.com
+    note: >-
+      Instructions-for-use host. Every path, including the control, redirects to the
+      gammatile.com homepage and returns the same 104899-byte body. No documents served.
+    documents: []
+x-evidence:
+  checked: '2026-08-22'
+  probes: 75
+  real_documents_found: 1
+  agent_card_found: false
+  security_txt_found: false
+  api_catalog_found: false

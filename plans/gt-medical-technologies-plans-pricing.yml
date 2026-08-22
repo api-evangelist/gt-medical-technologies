@@ -1,0 +1,20 @@
+generated: '2026-08-22'
+method: searched
+source: https://gammatile.com/hcp/order/
+plan_count: 0
+note: >-
+  GT Medical Technologies publishes no plans, tiers, or pricing of any kind. There is no API,
+  so there is no API pricing. GammaTile is a prescription medical device ordered by treating
+  institutions through a Salesforce ordering portal and a direct sales force; unit pricing is
+  not published and is negotiated per institution. The company publishes reimbursement and
+  coding guidance for payers rather than a price list. Searched the ordering page, the
+  reimbursement page, and the HCP resource center on 2026-08-22 - no published price appears
+  on any public page.
+plans: []
+x-evidence:
+  checked: '2026-08-22'
+  probed:
+    - url: https://gammatile.com/hcp/order/
+      status: 200
+    - url: https://gammatile.com/hcp/resource-center/reimbursement/
+      status: 200
