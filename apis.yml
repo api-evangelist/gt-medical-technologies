@@ -9,6 +9,17 @@ description: >-
   physical, prescription-only implant to hospitals and neurosurgical centers through a direct
   sales force and a Salesforce-based ordering portal; it publishes no public API, SDK, developer
   portal, or machine-readable specification of any kind.
+deliveryModel:
+  model: saas
+  open_source: false
+  commercial: true
+  callable_host: false
+  label: Hosted service · you call their endpoint
+  confidence: medium
+  source:
+  - pricing
+  generated: '2026-08-28'
+  method: derived
 image: https://gammatile.com/opengraph-image-1imx6w.png?opengraph-image.15hodd663qzs1.png
 url: https://raw.githubusercontent.com/api-evangelist/gt-medical-technologies/refs/heads/main/apis.yml
 x-type: company
